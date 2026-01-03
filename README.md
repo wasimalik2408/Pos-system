@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -71,3 +72,7 @@ export default defineConfig([
   },
 ])
 ```
+=======
+# Pos-system
+“React + Vite POS system with dashboard, barcode scan, and dummy product data for preview.
+>>>>>>> dcb7b64e32d96252e510cc46b0d7b37e9b643ddd

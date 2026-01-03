@@ -4,6 +4,7 @@ import {
   fetchProductsByName
 } from "./products.api";
 import type { Product } from "../types";
+import { useDebouncedValue } from "../../shared/hooks/useDebounce";
 
 type Params = {
   categoryId: number | null;
@@ -12,51 +13,72 @@ type Params = {
 
 export function useProducts({ categoryId, search }: Params) {
   const queryClient = useQueryClient();
-  return useQuery<Product[]>({
-    queryKey: ["products", categoryId, search],
 
-    queryFn: async () => {
-      // 🚫 nothing selected
-      if (!categoryId && !search) return [];
+  // 🔥 debounce search
+  const debouncedSearch = useDebouncedValue(search, 300);
 
-      // ✅ category only
-      if (categoryId && !search) {
-        return fetchProductsByCategory(categoryId);
-      }
-
-      // 🔍 category + search
-      if (categoryId && search) {
-        // 🔥 read cached category products
-        const cachedCategoryProducts =
-          queryClient.getQueryData<Product[]>([
-            "products",
-            categoryId,
-            ""
-          ]);
-
-        if (cachedCategoryProducts) {
-          const localMatch = cachedCategoryProducts.filter(p =>
-            p.name.toLowerCase().includes(search.toLowerCase())
-          );
-
-          // ✅ found locally → NO API HIT
-          if (localMatch.length > 0) {
-            return localMatch;
-          }
-        }
-
-        // ❌ not found → fallback search API
-        return fetchProductsByName(search);
-      }
-
-      // 🔍 search without category
-      return fetchProductsByName(search);
-    },
-
-    enabled: Boolean(categoryId || search),
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    gcTime: 30 * 60 * 1000,   // 30 minutes
+  /* ===============================
+     1️⃣ CATEGORY PRODUCTS (CACHED)
+     =============================== */
+  const categoryQuery = useQuery<Product[]>({
+    queryKey: ["products", "category", categoryId],
+    queryFn: () =>
+      categoryId ? fetchProductsByCategory(categoryId) : Promise.resolve([]),
+    enabled: Boolean(categoryId),
+    staleTime: 5 * 60 * 1000,
+    gcTime: 30 * 60 * 1000,
     refetchOnWindowFocus: false,
-   refetchOnReconnect: false
+    refetchOnReconnect: false,
+    placeholderData: previous => previous
   });
+
+  /* ==================================================
+     2️⃣ COLLECT ALL CACHED CATEGORY PRODUCTS (GLOBAL)
+     ================================================== */
+  const allCachedCategoryProducts: Product[] =
+    queryClient
+      .getQueryCache()
+      .findAll({ queryKey: ["products", "category"] })
+      .flatMap(q => (q.state.data as Product[]) ?? []);
+
+  /* ===============================
+     3️⃣ LOCAL SEARCH (NO API)
+     =============================== */
+  const localFiltered =
+    debouncedSearch.length >= 3
+      ? allCachedCategoryProducts.filter(p =>
+          p.name.toLowerCase().includes(debouncedSearch.toLowerCase())
+        )
+      : [];
+
+  /* ===============================
+     4️⃣ SEARCH API (LAST RESORT)
+     =============================== */
+  const shouldHitSearchApi =
+    debouncedSearch.length >= 3 && localFiltered.length === 0;
+
+  const searchQuery = useQuery<Product[]>({
+    queryKey: ["products", "search", debouncedSearch],
+    queryFn: () => fetchProductsByName(debouncedSearch),
+    enabled: shouldHitSearchApi,
+    staleTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false
+  });
+
+  /* ===============================
+     5️⃣ FINAL DATA SOURCE
+     =============================== */
+  const data =
+    debouncedSearch.length >= 3
+      ? localFiltered.length > 0
+        ? localFiltered
+        : searchQuery.data ?? []
+      : categoryQuery.data ?? [];
+console.log(data)
+  return {
+    data,
+    isLoading: categoryQuery.isLoading || searchQuery.isLoading,
+    isError: categoryQuery.isError || searchQuery.isError
+  };
 }

@@ -42,7 +42,7 @@ export async function fetchProductsByName(
   // );
   // return json.returnValue.table.map(mapProduct);
   const json = product as ProductResponse;
-
+  console.log("Fetched products by name:", json);
   return json.returnValue.table
     .filter(p =>
       p.productName.toLowerCase().includes(name.toLowerCase())

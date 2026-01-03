@@ -1,0 +1,6 @@
+[
+{ "id": 1, "name": "Walk-In 1", "status": "free", "type": "walk-in" },
+  { "id": 2, "name": "Walk-In 2", "status": "free", "type": "walk-in" },
+  { "id": 3, "name": "Table 1", "status": "free", "type": "table" },
+  { "id": 4, "name": "Table 2", "status": "free", "type": "table" }
+]

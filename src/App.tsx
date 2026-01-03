@@ -1,36 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import AppLayout from "./layouts/AppLayout";
 
-function App() {
-  const [count, setCount] = useState(0)
+// ✅ Lazy load all pages
+const Dashboard = lazy(() => import("./pages/Dashboard/Dashboard"));
+// const Billing = lazy(() => import("./pages/Billing/Billing")); // if exists
+// const Reports = lazy(() => import("./pages/Reports/Reports")); // if exists
+// const Master = lazy(() => import("./pages/Master/Master"));   // if exists
 
+export default function App() {
   return (
-    <>
-    <div className="p-10 text-3xl text-blue-600">Tailwind Works!</div>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      {/* Suspense fallback while page loads */}
+      <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route path="/" element={<Dashboard />} />
+            {/* <Route path="/billing" element={<Billing />} />
+            <Route path="/reports" element={<Reports />} />
+            <Route path="/master" element={<Master />} /> */}
+          </Route>
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
 }
-
-export default App

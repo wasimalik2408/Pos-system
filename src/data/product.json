@@ -1,0 +1,251 @@
+{
+  "returnValue": {
+    "table": [
+
+            {
+        "id": 21,
+        "categoryId": 101,
+        "productName": "French Fries",
+        "salePrice": 90,
+        "picture": "https://dummyjson.com/icon/food9/150",
+        "barcode": "890100000009",
+        "custDeiscription": "Fried Snack"
+        },
+        {
+        "id": 22,
+        "categoryId": 101,
+        "productName": "Cheese Fries",
+        "salePrice": 120,
+        "picture": "https://dummyjson.com/icon/food10/150",
+        "barcode": "890100000010",
+        "custDeiscription": "Fried Snack"
+        },
+        {
+        "id": 23,
+        "categoryId": 101,
+        "productName": "Veg Sandwich",
+        "salePrice": 110,
+        "picture": "https://dummyjson.com/icon/food11/150",
+        "barcode": "890100000011",
+        "custDeiscription": "Light Snack"
+        },
+        {
+        "id": 24,
+        "categoryId": 101,
+        "productName": "Grilled Sandwich",
+        "salePrice": 130,
+        "picture": "https://dummyjson.com/icon/food12/150",
+        "barcode": "890100000012",
+        "custDeiscription": "Hot Snack"
+        },
+        {
+        "id": 25,
+        "categoryId": 101,
+        "productName": "Veg Momos",
+        "salePrice": 140,
+        "picture": "https://dummyjson.com/icon/food13/150",
+        "barcode": "890100000013",
+        "custDeiscription": "Steamed Snack"
+        },
+        {
+        "id": 26,
+        "categoryId": 101,
+        "productName": "Fried Momos",
+        "salePrice": 160,
+        "picture": "https://dummyjson.com/icon/food14/150",
+        "barcode": "890100000014",
+        "custDeiscription": "Fried Snack"
+        },
+        {
+        "id": 27,
+        "categoryId": 101,
+        "productName": "Paneer Pakoda",
+        "salePrice": 150,
+        "picture": "https://dummyjson.com/icon/food15/150",
+        "barcode": "890100000015",
+        "custDeiscription": "Fried Starter"
+        },
+        {
+        "id": 28,
+        "categoryId": 101,
+        "productName": "Veg Spring Roll",
+        "salePrice": 140,
+        "picture": "https://dummyjson.com/icon/food16/150",
+        "barcode": "890100000016",
+        "custDeiscription": "Crispy Snack"
+        },
+        {
+        "id": 29,
+        "categoryId": 101,
+        "productName": "Cheese Balls",
+        "salePrice": 130,
+        "picture": "https://dummyjson.com/icon/food17/150",
+        "barcode": "890100000017",
+        "custDeiscription": "Cheese Snack"
+        },
+        {
+        "id": 30,
+        "categoryId": 101,
+        "productName": "Garlic Bread",
+        "salePrice": 120,
+        "picture": "https://dummyjson.com/icon/food18/150",
+        "barcode": "890100000018",
+        "custDeiscription": "Baked Snack"
+        },
+        {
+        "id": 31,
+        "categoryId": 101,
+        "productName": "Paneer Tikka",
+        "salePrice": 210,
+        "picture": "https://dummyjson.com/icon/food19/150",
+        "barcode": "890100000019",
+        "custDeiscription": "Grilled Starter"
+        },
+        {
+        "id": 32,
+        "categoryId": 101,
+        "productName": "Hara Bhara Kabab",
+        "salePrice": 180,
+        "picture": "https://dummyjson.com/icon/food20/150",
+        "barcode": "890100000020",
+        "custDeiscription": "Veg Starter"
+        },
+        {
+        "id": 33,
+        "categoryId": 101,
+        "productName": "Corn Cheese Balls",
+        "salePrice": 160,
+        "picture": "https://dummyjson.com/icon/food21/150",
+        "barcode": "890100000021",
+        "custDeiscription": "Corn Snack"
+        },
+        {
+        "id": 34,
+        "categoryId": 102,
+        "productName": "Butter Paneer tikka",
+        "salePrice": 100,
+        "picture": "https://dummyjson.com/icon/food22/150",
+        "barcode": "890100000022",
+        "custDeiscription": "Veg Snack"
+        },
+        {
+        "id": 35,
+        "categoryId": 102,
+        "productName": "Chilli Paneer",
+        "salePrice": 200,
+        "picture": "https://dummyjson.com/icon/food23/150",
+        "barcode": "890100000023",
+        "custDeiscription": "Spicy Starter"
+        },
+      {
+        "id": 9,
+        "categoryId": 201,
+        "productName": "Smartphone",
+        "salePrice": 14999,
+        "picture": "https://dummyjson.com/icon/elec1/150",
+        "barcode": "890200000001",
+        "custDeiscription": "Mobile Device"
+      },
+      {
+        "id": 10,
+        "categoryId": 201,
+        "productName": "Bluetooth Speaker",
+        "salePrice": 2999,
+        "picture": "https://dummyjson.com/icon/elec2/150",
+        "barcode": "890200000002",
+        "custDeiscription": "Audio Device"
+      },
+      {
+        "id": 11,
+        "categoryId": 201,
+        "productName": "Wireless Headphones",
+        "salePrice": 4999,
+        "picture": "https://dummyjson.com/icon/elec3/150",
+        "barcode": "890200000003",
+        "custDeiscription": "Audio Gear"
+      },
+      {
+        "id": 12,
+        "categoryId": 201,
+        "productName": "Smart Watch",
+        "salePrice": 6999,
+        "picture": "https://dummyjson.com/icon/elec4/150",
+        "barcode": "890200000004",
+        "custDeiscription": "Wearable Tech"
+      },
+
+      {
+        "id": 13,
+        "categoryId": 301,
+        "productName": "Men T-Shirt",
+        "salePrice": 799,
+        "picture": "https://dummyjson.com/icon/fash1/150",
+        "barcode": "890300000001",
+        "custDeiscription": "Casual Wear"
+      },
+      {
+        "id": 14,
+        "categoryId": 301,
+        "productName": "Women Kurti",
+        "salePrice": 1299,
+        "picture": "https://dummyjson.com/icon/fash2/150",
+        "barcode": "890300000002",
+        "custDeiscription": "Ethnic Wear"
+      },
+      {
+        "id": 15,
+        "categoryId": 301,
+        "productName": "Denim Jeans",
+        "salePrice": 1999,
+        "picture": "https://dummyjson.com/icon/fash3/150",
+        "barcode": "890300000003",
+        "custDeiscription": "Casual Wear"
+      },
+      {
+        "id": 16,
+        "categoryId": 301,
+        "productName": "Hoodie Jacket",
+        "salePrice": 2499,
+        "picture": "https://dummyjson.com/icon/fash4/150",
+        "barcode": "890300000004",
+        "custDeiscription": "Winter Wear"
+      },
+      {
+        "id": 17,
+        "categoryId": 401,
+        "productName": "Leather Wallet",
+        "salePrice": 999,
+        "picture": "https://dummyjson.com/icon/acc1/150",
+        "barcode": "890400000001",
+        "custDeiscription": "Daily Accessory"
+      },
+      {
+        "id": 18,
+        "categoryId": 401,
+        "productName": "Sunglasses",
+        "salePrice": 1499,
+        "picture": "https://dummyjson.com/icon/acc2/150",
+        "barcode": "890400000002",
+        "custDeiscription": "Eye Wear"
+      },
+      {
+        "id": 19,
+        "categoryId": 401,
+        "productName": "Backpack",
+        "salePrice": 1899,
+        "picture": "https://dummyjson.com/icon/acc3/150",
+        "barcode": "890400000003",
+        "custDeiscription": "Travel Bag"
+      },
+      {
+        "id": 20,
+        "categoryId": 401,
+        "productName": "Wrist Belt",
+        "salePrice": 699,
+        "picture": "https://dummyjson.com/icon/acc4/150",
+        "barcode": "890400000004",
+        "custDeiscription": "Fashion Accessory"
+      }
+    ]
+  }
+}

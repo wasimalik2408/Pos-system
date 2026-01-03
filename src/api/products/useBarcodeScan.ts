@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import type { Product } from "../types";
-import { fetchProductsByName } from "../products.api";
+import { fetchProductsByName } from "./products.api";
 import { isBarcode } from "../../utils/barcode";
 
 type Params = {
@@ -13,7 +13,7 @@ type Params = {
 
 export function useBarcodeScan({
   search,
-  categoryId,
+  // categoryId,
   onAddProduct,
   onClearSearch
 }: Params) {
@@ -30,24 +30,23 @@ export function useBarcodeScan({
       try {
         let product: Product | undefined;
 
-        // 1️⃣ Cache first (category scoped)
-        if (categoryId) {
-          const cached = queryClient.getQueryData<Product[]>([
-            "products",
-            categoryId,
-            ""
-          ]);
+        // ✅ 1️⃣ Search ALL cached products (category independent)
+        const allQueries = queryClient.getQueriesData<Product[]>({
+          queryKey: ["products"]
+        });
 
-          product = cached?.find(p => p.barcode === search);
+        for (const [, products] of allQueries) {
+          product = products?.find(p => p.barcode === search);
+          if (product) break;
         }
 
-        // 2️⃣ API fallback
+        // ✅ 2️⃣ API fallback (barcode or name)
         if (!product) {
           const res = await fetchProductsByName(search);
           product = res[0];
         }
 
-        // 3️⃣ Reuse existing add logic
+        // ✅ 3️⃣ Add product
         if (product) {
           onAddProduct(product);
           onClearSearch();
@@ -58,11 +57,5 @@ export function useBarcodeScan({
     }
 
     handleBarcode();
-  }, [
-    search,
-    categoryId,
-    queryClient,
-    onAddProduct,
-    onClearSearch
-  ]);
+  }, [search, queryClient, onAddProduct, onClearSearch]);
 }

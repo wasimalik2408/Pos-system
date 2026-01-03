@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   fetchProductsByCategory,
   fetchProductsByName
-} from "../products.api";
+} from "./products.api";
 import type { Product } from "../types";
 
 type Params = {

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useCategories } from "../../../api/hooks/useCategories";
-import { useProducts } from "../../../api/hooks/useProducts";
-import { useTables } from "../../../api/hooks/useTables";
+import { useCategories } from "../../../api/categories/useCategories";
+import { useProducts } from "../../../api/products/useProducts";
+import { useTables } from "../../../api/table/useTables";
 import type { Product, Table, TableOrder, OrderInfo } from "../../../api/types";
 import { createOrderActions } from "../../../shared/OrderActions";
-import { generateOrderAndKot } from "@/shared/idGenerator";
-import { useBarcodeScan } from "@/api/hooks/useBarcodeScan";
+import { generateOrderAndKot } from "@/utils/idGenerator";
+import { useBarcodeScan } from "@/api/products/useBarcodeScan";
 
 export function useDashboard() {
   

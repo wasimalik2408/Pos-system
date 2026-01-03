@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { OrderInfo } from "../api/types";
+import type { OrderInfo } from "../../api/types";
 
 type Props = {
   onClose: () => void;

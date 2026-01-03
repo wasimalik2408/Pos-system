@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { ROUTES } from "../routes/path";
 import {
   LayoutDashboard,
   Settings,
@@ -7,10 +8,10 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { name: "Dashboard", path: "/", icon: LayoutDashboard },
-  { name: "Master", path: "/master", icon: Settings },
-  { name: "Billing", path: "/billing", icon: Receipt },
-  { name: "Report", path: "/reports", icon: BarChart3 },
+  { name: "Dashboard", path: ROUTES.DASHBOARD, icon: LayoutDashboard },
+  { name: "Master", path: ROUTES.MASTER, icon: Settings },
+  { name: "Billing", path: ROUTES.BILLING, icon: Receipt },
+  { name: "Report", path: ROUTES.REPORTS, icon: BarChart3 },
 ];
 
 export default function Header() {

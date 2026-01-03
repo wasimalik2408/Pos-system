@@ -4,10 +4,10 @@ import LeftSidebar from "./components/LeftSidebar";
 import ProductGrid from "./components/ProductGrid";
 import OrderTable from "./components/OrderTable";
 import OrderInfo from "./components/OrderInfo";
-import OrderInfoModal from "../../shared/OrderInfoModal";
+import OrderInfoModal from "../../shared/components/OrderInfoModal";
+import OrderActions from "../../shared/components/OrderActions";
 import BillingSummary from "./components/BillingSummary";
 import SearchCategory from "./components/SearchCategory";
-import OrderActions from "./components/OrderActions";
 
 export default function Dashboard() {
   const d = useDashboard();
@@ -15,7 +15,9 @@ export default function Dashboard() {
 
   return (
     <div className="max-w-[1400px] mx-auto mt-8 border h-[90%] bg-white">
-     <div className="px-5 py-3 font-semibold text-gray-900 border-b">Sales Bill</div>
+     <div className="px-5 py-3 font-semibold text-gray-900 border-b">Sales Bill 
+      <span className="text-sm font-light float-right text-gray-500">Barcode product instantly. 890100000009, 890100000010, 890100000012</span>
+     </div>
     <div className="flex p-4 bg-white">
 
   {/* LEFT */}

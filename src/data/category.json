@@ -1,0 +1,33 @@
+{
+  "returnValue": {
+    "table": [
+      {
+        "id": 101,
+        "referenceId": 1001,
+        "name": "Starters"
+      },
+      {
+        "id": 102,
+        "referenceId": 1002,
+        "name": "Main Course"
+      },
+
+      {
+        "id": 201,
+        "referenceId": 2001,
+        "name": "Electronics"
+      },
+
+      {
+        "id": 301,
+        "referenceId": 3001,
+        "name": "Fashion"
+      },
+      {
+        "id": 401,
+        "referenceId": 4001,
+        "name": "Accessories"
+      }
+    ]
+  }
+}

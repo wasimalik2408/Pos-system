@@ -28,7 +28,6 @@ export async function fetchProductsByCategory(
   // );
   // return json.returnValue.table.map(mapProduct);
   const json = product as ProductResponse;
-  console.log("Fetched products for category:", categoryRefId);
    return json.returnValue.table
     .filter(p => p.categoryId === categoryRefId) // important!
     .map(mapProduct);
@@ -42,7 +41,6 @@ export async function fetchProductsByName(
   // );
   // return json.returnValue.table.map(mapProduct);
   const json = product as ProductResponse;
-  console.log("Fetched products by name:", json);
   return json.returnValue.table
     .filter(p =>
       p.productName.toLowerCase().includes(name.toLowerCase())

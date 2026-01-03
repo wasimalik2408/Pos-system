@@ -75,7 +75,6 @@ export function useProducts({ categoryId, search }: Params) {
         ? localFiltered
         : searchQuery.data ?? []
       : categoryQuery.data ?? [];
-console.log(data)
   return {
     data,
     isLoading: categoryQuery.isLoading || searchQuery.isLoading,

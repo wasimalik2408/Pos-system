@@ -1,17 +1,21 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
-import path from 'path';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  base: "./",
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      "@": path.resolve(__dirname, "src"),
     },
   },
   build: {
-    outDir: 'dist', // explicitly tell Vite to put build here
-    emptyOutDir: true, // clean the dist folder before build
+    outDir: "dist",       // ✅ ensure output goes to dist
+    emptyOutDir: true,    // ✅ clean folder before build
+    rollupOptions: {
+      input: path.resolve(__dirname, "index.html"), // ensure correct entry
+    },
   },
-  publicDir: 'public', // ensures _redirects file is copied to dist
+  publicDir: "public",    // ✅ ensures _redirects is copied
 });

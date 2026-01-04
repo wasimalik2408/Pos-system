@@ -1,4 +1,4 @@
-import type { Product } from "../../../api/types";
+import type { Product } from "../../api/types";
 
 type Props = {
   products: Product[];

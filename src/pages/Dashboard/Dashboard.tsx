@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useDashboard } from "./hooks/useDashboard";
 import LeftSidebar from "./components/LeftSidebar";
-import ProductGrid from "./components/ProductGrid";
 import OrderTable from "./components/OrderTable";
 import OrderInfo from "./components/OrderInfo";
+import BillingSummary from "./components/BillingSummary";
 import OrderInfoModal from "../../shared/components/OrderInfoModal";
 import OrderActions from "../../shared/components/OrderActions";
-import BillingSummary from "./components/BillingSummary";
 import SearchCategory from "../../shared/components/ProductSearchBar";
+import ProductGrid from "../../shared/components/ProductGrid";
 
 export default function Dashboard() {
   const d = useDashboard();

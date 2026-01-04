@@ -6,7 +6,6 @@ import { generateOrderAndKot } from "@/utils/idGenerator";
  */
 export const createNewOrder = (table: Table): TableOrder => {
   const { orderId, kotId } = generateOrderAndKot();
-
   return {
     tableId: table.id,
     status: "free",

@@ -36,22 +36,22 @@ export default function Dashboard() {
    <main className="flex-1 px-4">
   
       {/* Order Info ALWAYS */}
-      <OrderInfo
+     <OrderInfo
         info={d.currentOrder?.info}
-        disabled={!d.currentOrder}
-        onAdd={() => {
-          if (!d.currentOrder) return;
-          setShowInfo(true);
-        }}
+        disabled={!d.currentOrder}  // ✅ disable + if no table selected
+        onAdd={() => setShowInfo(true)}
       />
 
   {/* Order Table ALWAYS */}
-      <OrderTable
-        items={d.currentOrder?.items ?? []}
-        showHeader={!!d.currentOrder}
-        onRemove={d.removeProduct}
-        tableLabel={d.tables.find(t => t.id === d.currentOrder?.tableId)?.name}
-      />
+ <OrderTable
+      items={d.currentOrder?.items ?? []}
+      showHeader={!!d.currentOrder}
+      onRemove={d.removeProduct}
+      tableLabel={
+        d.tables.find(t => t.id === d.selectedTableId)?.name
+      }
+  />
+
 
   {/* Action Buttons ALWAYS */}
       <div className="flex justify-between items-start mt-4">
@@ -86,10 +86,11 @@ export default function Dashboard() {
       </aside>
 
       {showInfo && d.currentOrder && (
-        <OrderInfoModal
-          onClose={() => setShowInfo(false)}
-          onSave={d.updateOrderInfo}
-        />
+     <OrderInfoModal
+        info={d.currentOrder?.info}   // prefill
+        onClose={() => setShowInfo(false)} // close modal
+        onSave={d.updateOrderInfo}    // save info to current order
+      />
       )}
     </div>
     </div>

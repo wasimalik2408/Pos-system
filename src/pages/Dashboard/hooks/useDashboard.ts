@@ -9,9 +9,10 @@ import { createNewOrder } from "@/utils/createNewOrder";
 import { useOrderProducts } from "@/shared/hooks/useOrderProducts";
 
 export function useDashboard() {
-
   const { data: tables = [] } = useTables();
+
   const searchState = useProductSearch();
+
   const { data: products = [] } = useProducts({
     categoryId: searchState.categoryId,
     search: searchState.search,
@@ -21,19 +22,22 @@ export function useDashboard() {
   const [orders, setOrders] = useState<Record<number, TableOrder>>({});
   const [holdOrders, setHoldOrders] = useState<TableOrder[]>([]);
 
-  const currentOrder = selectedTableId ? orders[selectedTableId] : null;
+  const currentOrder = selectedTableId
+    ? orders[selectedTableId] ?? null
+    : null;
 
   // ------------------------
-  // Table Selection
+  // Table Selection (UI only)
   // ------------------------
-  const selectTable = (table: Table) => {
-    setSelectedTableId(table.id);
+ const selectTable = (table: Table) => {
+    console.log(table.type)
     setOrders(prev => prev[table.id] ? prev : {
       ...prev,
       [table.id]: createNewOrder(table),
     });
   };
 
+   
   // ------------------------
   // Resume Hold Order
   // ------------------------
@@ -46,40 +50,46 @@ export function useDashboard() {
   };
 
   // ------------------------
-  // Update Active Order
+  // Update Active Order (lazy creation)
   // ------------------------
-  const updateActiveOrder = (
-    updater: (order: TableOrder) => TableOrder
-  ) => {
-    if (!selectedTableId) return;
+const updateActiveOrder = (updater: (order: TableOrder) => TableOrder) => {
+  if (!selectedTableId) return; // no table selected → nothing to do
 
-    setOrders(prev => {
-      const order = prev[selectedTableId];
-      if (!order) return prev;
+  setOrders(prev => {
+    let order = prev[selectedTableId];
 
-      const updated = updater(order);
+    const updated = updater(order);
 
-      setHoldOrders(prevHold =>
-        prevHold.map(o => o.orderId === updated.orderId ? updated : o)
-      );
+    // Sync holdOrders if exists
+    setHoldOrders(prevHold =>
+      prevHold.map(o => (o.orderId === updated.orderId ? updated : o))
+    );
 
-      return { ...prev, [selectedTableId]: updated };
-    });
-  };
+    return { ...prev, [selectedTableId]: updated };
+  });
+};
+
+
 
   // ------------------------
   // Order Info
   // ------------------------
-  const updateOrderInfo = (info: OrderInfo) => {
-    updateActiveOrder(order => ({ ...order, info }));
-  };
+const updateOrderInfo = (info: OrderInfo) => {
+  updateActiveOrder(order => ({
+    ...order,
+    info: {
+      ...order.info, // preserve existing info
+      ...info,       // override with user input
+    },
+  }));
+};
+
 
   // ------------------------
   // Products
   // ------------------------
   const { addProduct, removeProduct } = useOrderProducts(updateActiveOrder);
 
-  // Barcode scanning
   useBarcodeScan({
     search: searchState.search,
     categoryId: searchState.categoryId,

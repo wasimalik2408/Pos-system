@@ -7,7 +7,7 @@ import OrderInfo from "./components/OrderInfo";
 import OrderInfoModal from "../../shared/components/OrderInfoModal";
 import OrderActions from "../../shared/components/OrderActions";
 import BillingSummary from "./components/BillingSummary";
-import SearchCategory from "./components/SearchCategory";
+import SearchCategory from "../../shared/components/ProductSearchBar";
 
 export default function Dashboard() {
   const d = useDashboard();
@@ -77,10 +77,10 @@ export default function Dashboard() {
       <aside className="w-80">
         <SearchCategory
           categories={d.categories}
-          selectedCategory={d.selectedCategory}
-          onSelect={d.setSelectedCategory}
           search={d.search}
           onSearch={d.setSearch}
+          selectedCategory={d.categoryId}
+          onSelect={d.setCategoryId}
         />
         <ProductGrid products={d.products} onAdd={d.addProduct} />
       </aside>

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import type { Category } from "../../../api/types";
+import type { Category } from "../../api/types";
 
 type Props = {
   categories: Category[];
@@ -16,11 +16,11 @@ export default function SearchCategory({
   search,
   onSearch,
 }: Props) {
-  const scrollRef = useRef<HTMLDivElement>(null);
 
+ const scrollRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
-
     scrollRef.current.scrollBy({
       left: direction === "left" ? -150 : 150,
       behavior: "smooth",
@@ -48,24 +48,34 @@ export default function SearchCategory({
         </button>
 
         {/* Scrollable Categories */}
-        <div
-          ref={scrollRef}
-          className="flex gap-2 overflow-x-auto no-scrollbar flex-1"
-        >
-          {categories.map((c) => (
-            <button
-              key={c.id}
-              onClick={() => onSelect(c.id)}
-              className={`px-3 py-1 rounded whitespace-nowrap text-white ${
-                selectedCategory === c.id
-                  ? "bg-green-500 text-white"
-                  : "border bg-[#22a4e4]"
-              }`}
-            >
-              {c.name}
-            </button>
-          ))}
-        </div>
+     <div
+  ref={scrollRef}
+  className="flex gap-2 overflow-x-auto no-scrollbar flex-1"
+>
+  {categories.map((c) => (
+    <button
+      key={c.id}
+      ref={(el) => { buttonRefs.current[c.id] = el;}}
+      onClick={() => {
+        onSelect(c.id);
+
+        buttonRefs.current[c.id]?.scrollIntoView({
+          behavior: "smooth",
+          inline: "center", // or "nearest"
+          block: "nearest",
+        });
+      }}
+      className={`px-3 py-1 rounded whitespace-nowrap text-white ${
+        selectedCategory === c.id
+          ? "bg-green-500"
+          : "border bg-[#22a4e4]"
+      }`}
+    >
+      {c.name}
+    </button>
+  ))}
+</div>
+
 
         {/* Right Arrow */}
         <button

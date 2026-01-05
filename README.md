@@ -5,6 +5,14 @@ This project is designed for restaurants, cafés, or small retail businesses to 
 
 ---
 
+## 📸 Screenshot
+
+![Dashboard Screenshot](./assets/dashboard-screenshot.png)
+
+_A clean and user-friendly POS dashboard interface._
+
+---
+
 ## 🌐 Live Demo
 
 👉 **Netlify Demo:**  

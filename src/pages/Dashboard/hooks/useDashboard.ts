@@ -107,7 +107,6 @@ const updateOrderInfo = (info: OrderInfo) => {
     setSelectedTableId,
     currentOrder,
   });
-console.log(orders)
   return {
     tables,
     products,

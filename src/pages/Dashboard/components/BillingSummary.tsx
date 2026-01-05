@@ -30,12 +30,12 @@ export default function BillingSummary({
 
       <div className="flex justify-between">
         <span>Total Discount</span>
-        <span>₹{totalDiscount.toFixed(2)}</span>
+        <span>₹{totalDiscount.toFixed(0)}</span>
       </div>
 
       <div className="flex justify-between">
         <span>GST/VAT @ 12%</span>
-        <span>₹{gst.toFixed(2)}</span>
+        <span>₹{gst.toFixed(0)}</span>
       </div>
 
       <div className="flex justify-between">
@@ -45,7 +45,7 @@ export default function BillingSummary({
 
       <div className="border-t mt-2 pt-2 flex justify-between font-bold text-lg">
         <span>Total Amount</span>
-        <span>₹{totalAmount.toFixed(2)}</span>
+        <span>₹{totalAmount.toFixed(0)}</span>
       </div>
 
       {/* <button className="mt-3 bg-green-600 text-white px-6 py-2 rounded w-full">

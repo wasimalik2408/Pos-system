@@ -30,7 +30,7 @@ export function useDashboard() {
   // Table Selection (UI only)
   // ------------------------
  const selectTable = (table: Table) => {
-    console.log(table.type)
+  setSelectedTableId(table.id);
     setOrders(prev => prev[table.id] ? prev : {
       ...prev,
       [table.id]: createNewOrder(table),
@@ -107,7 +107,7 @@ const updateOrderInfo = (info: OrderInfo) => {
     setSelectedTableId,
     currentOrder,
   });
-
+console.log(orders)
   return {
     tables,
     products,
